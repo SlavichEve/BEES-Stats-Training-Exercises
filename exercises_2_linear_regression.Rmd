@@ -1,0 +1,146 @@
+---
+title: "Exercises - Linear regression"
+output:
+  html_document:
+    code_download: true
+mathjax: local
+---
+
+## Lecture revision
+### Main points to remember from the lecture
+
+* Simple linear regression is about looking for an association between a response (y-variable) and a predictor (x-variable).
+*  How do I test assumptions in linear regression?
+*  Two-sample t-test is just a special case of simple linear regression!
+
+### Code we learned
+
+First call libraries
+```{r message=FALSE, warning=FALSE, paged.print=TRUE}
+library(tidyverse)
+knitr::opts_chunk$set(fig.path='Figs/')
+```
+
+Linear model with `quality` as response, and `catchment` as predictor using dataset `data_qual`
+```{r}
+data_qual <- read_csv(file = "data/waterQual.csv")
+mod_qual1<-lm(quality~catchment, data = data_qual)
+summary(mod_qual1)
+```
+
+Confidence interval for coefficient of catchment (and intercept)
+```{r}
+confint(mod_qual1)
+```
+
+
+## Questions
+
+Remove all object from the environment before we start.
+```{r}
+rm(list = ls())
+```
+
+
+### Question 1
+**Consider the guinea pigs (smoking) example again: **
+
+*Is there an association between the number of errors and treatment group (Control and Nicotine)?*
+
+**a) Load the `smokePregnant` data into R.**
+```{r}
+
+```
+
+**b) The data could be organised differently. Instead of looking like this.**
+
+| Treatment | Control  |
+|-----------|----------|
+|     38    |    11    |
+|     26    |    19    |
+|     33    |    15    |
+|     89    |    47    |
+ [etc]                                
+
+**Can you make it look like this:**
+
+| errors | treatment |
+|--------|-----------|
+| 38     | Nicotine  |
+| 26     | Nicotine  |
+| 33     | Nicotine  |
+| 89     | Nicotine  |
+| [etc]  |           |
+| 11     | Control   |
+| 19     | Control   |
+| 15     | Control   |
+| 47     | Control   |
+| [etc]  |
+
+```{r}
+
+```
+
+**c) Left-skewed, right-skewed, symmetric? If you think `errors` needs transforming...**
+```{r}
+
+```
+
+
+**d) In the session 1 exercises, we used a two-sample t-test. Let's now use linear regression. To do this:**
+
+* Construct a new variable `numericTreatment`, which takes the value 1 for `Nicotine` and 0 for `Control`.
+* Fit a linear regression for errors (transformed if required) against `numericTreatment`.
+* Compare the output to that obtained previously for the two-sample t-test.
+```{r}
+
+```
+
+**e) What did you assume in the linear regression model above?  What could have been done to ensure assumptions were reasonable?**
+
+
+```{r}
+
+```
+
+
+### Question 2
+
+**Consider the water quality example:**
+
+*How is water quality in creeks associated with/related to the size of the catchment area?*
+
+**a) Load the `waterQual` data into R.**
+```{r}
+
+```
+
+**b) What is the research question? Descriptive statistics or inference? Do we have a specific hypothesis to test or are we just estimating some parameter?**
+
+
+
+**c) What are the main properties of the data? One variable or two? Categorical or quantitative?**
+
+
+
+**d) Produce a graph relevant to the original research question.**
+```{r}
+
+```
+
+**e) What model do we want to use here? What parameter in this model describes how water quality is associated with catchment area?**
+
+```{r}
+
+```
+
+**f) What is a plausible range of values for this key parameter? Hint: Use `?confint`**
+```{r}
+
+```
+
+**g) What did you assume in the above?  What could have been done to ensure assumptions were reasonable?**
+```{r}
+
+```
+ 
